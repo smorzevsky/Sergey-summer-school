@@ -1,3 +1,8 @@
-# Sergey-summer-school
+#  Summer school 2024 - Cypress JavaScript
 
-TDL Summer school
+## npm scripts
+
+### Code formating
+
+This project uses [Prettier](https://npmjs.com/package/prettier) package to format the code. Run the folowing command to format all files: 
+'npm run format'
