@@ -1,0 +1,15 @@
+{
+  "name": "sergey-summer-school",
+  "version": "1.0.0",
+  "description": "Summer school 2024 Cypress project",
+  "main": "conditionals.js",
+  "scripts": {
+    "format": "npx prettier . --write"
+  },
+  "keywords": [
+    "cypress",
+    "javascript"
+  ],
+  "author": "Sergejs Morzevskis",
+  "license": "ISC"
+}
