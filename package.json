@@ -4,12 +4,16 @@
   "description": "Summer school 2024 Cypress project",
   "main": "conditionals.js",
   "scripts": {
-    "format": "npx prettier . --write"
+    "format": "npx prettier . --write",
+    "cypress-open": "npx cypress open"
   },
   "keywords": [
     "cypress",
     "javascript"
   ],
   "author": "Sergejs Morzevskis",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^13.13.1"
+  }
 }
