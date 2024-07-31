@@ -1,7 +1,6 @@
 import Global from '../../pageElements/Global';
 import Home from '../../pageElements/Home';
 import Login from '../../pageElements/Login';
-import Store from '../../pageElements/Store';
 import Cart from '../../pageElements/Cart';
 
 describe('Cart functionality', () => {

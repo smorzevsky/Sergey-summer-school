@@ -5,6 +5,7 @@ import Login from '../../pageElements/Login';
 describe('login functionality', () => {
     beforeEach(() => {
         cy.visit('/');
+        
     });
 
     it('opens a webstore login  page', () => {
@@ -14,9 +15,8 @@ describe('login functionality', () => {
         Login.elements.passwordInput('should.be', 'visible');
         Login.elements.signInButton('should.be', 'visible');
 
-
-        
     });
+
     it('logs in & opens Store page from sidebar', () => {
         cy.login(Cypress.env('username'), Cypress.env('password'));
         cy.visit('/');
@@ -24,13 +24,9 @@ describe('login functionality', () => {
         Home.elements.productLink().should('have.length', 4);
         Global.navigateSideBar.openPage('Store');
 
-       
     });
 
     it('opens sidebar & click on Store page', () => {
         //Global.navigateSideBar('Store');
     });
-
-   
-
 }); 
