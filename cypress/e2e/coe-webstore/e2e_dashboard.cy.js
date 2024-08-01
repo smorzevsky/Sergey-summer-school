@@ -31,6 +31,11 @@ describe('Dashboard functionality', () => {
         Global.elements.sideBarBurger().click();
         Home.elements.accountLink().click();
         Dashboard.elements.addressLink().click();
+        Dashboard.elements.addAddressButton().click();
+        Dashboard.fillFirstName2(Cypress.env('firstName2'));
+        Dashboard.fillLastName2(Cypress.env('lastName2'));
+        Dashboard.fillAddress2(Cypress.env('address2'));
+        Dashboard.fillPostalCode2(Cypress.env('postalCode2'));
     });
 
 });
