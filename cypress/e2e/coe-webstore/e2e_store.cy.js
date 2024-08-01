@@ -1,4 +1,5 @@
 import Store from '../../pageElements/Store';
+import Product_description from '../../pageElements/Product_description';
 
 describe('Store page functionality', () => {
 
@@ -14,20 +15,23 @@ describe('Store page functionality', () => {
         cy.visit('/store');
         Store.elements.storePageTitle().should('have.text', 'All products');
     });
+    
+    it('product detail inspection', () => {
+        cy.visit('/store');
+        Store.elements.productLink().last().click();
+        Product_description.elements.productDescription().should('have.text', `Every programmer's best friend.`);
+        
+
+    });
+
 
     it('switch view to Table view', () => {
         cy.visit('/store');
         Store.elements.viewButton().click();
+        Product_description.elements.productsTablePageTitle().should('have.text', 'Products table view');
 
     });
 
-    it('sort products by Price: High -> Low', () => {
-        
-    });
-
-    it('sort products by Price: Low -> High', () => {
-
-    });
 
     
 });

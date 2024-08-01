@@ -4,7 +4,7 @@ module.exports = defineConfig({
   reporter: 'mochawesome',
   env: {
     username: 'cypress_test@test.com',
-    password: '',
+    password: 'TDL2024',
     firstName: 'Cypress', 
     firstName1: 'Sergejs',
     lastName: 'Test',

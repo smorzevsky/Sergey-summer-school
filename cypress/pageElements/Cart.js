@@ -5,6 +5,8 @@ class Cart {
         productDeleteButton: () => cy.get('.w-28 > .text-small-regular > .flex'),
         productSelectButton: () => cy.getByTestId('product-select-button'),
         goToCheckoutButton: () => cy.getByTestId('checkout-button'),
+        emptyCartMessage: () => cy.contains('h1', 'Cart'),
+
     };
  
 }

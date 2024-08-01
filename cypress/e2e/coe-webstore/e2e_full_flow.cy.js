@@ -5,6 +5,8 @@ import Store from '../../pageElements/Store';
 import Cart from '../../pageElements/Cart';
 import Checkout from '../../pageElements/Checkout';
 import Dashboard from '../../pageElements/Dashboard';
+import Product_description from '../../pageElements/Product_description';
+
 
 describe('login functionality', () => {
     beforeEach(() => {
@@ -29,10 +31,6 @@ describe('login functionality', () => {
         Global.navigateSideBar.openPage('Store');
 
     });
-
-    it('opens sidebar & click on Store page', () => {
-        //Global.navigateSideBar('Store');
-    });
 }); 
 
 describe('Store page functionality', () => {
@@ -50,17 +48,16 @@ describe('Store page functionality', () => {
         Store.elements.storePageTitle().should('have.text', 'All products');
     });
 
+    it('product detail inspection', () => {
+        cy.visit('/store');
+        Store.elements.productLink().last().click();
+        Product_description.elements.productDescription().should('have.text', `Every programmer's best friend.`);
+    });
+
     it('switch view to Table view', () => {
         cy.visit('/store');
         Store.elements.viewButton().click();
-
-    });
-
-    it('sort products by Price: High -> Low', () => {
-        
-    });
-
-    it('sort products by Price: Low -> High', () => {
+        Product_description.elements.productsTablePageTitle().should('have.text', 'Products table view');
 
     });
 });
@@ -85,14 +82,17 @@ describe('Cart functionality', () => {
     it('removes a product from the cart', () => {
         Global.navigateSideBar.openPage('Cart');
         Cart.elements.productDeleteButton().click();
+        Cart.elements.emptyCartMessage();
     });
-        // Products into the card can be managed
+        // Products into the cart can be managed
     it('already added product quantity increasion', () => {
         Home.elements.medusaCoffeMug();
         Global.elements.addToCartButton().click();
         Global.navigateSideBar.openPage('Cart');
         Cart.elements.productSelectButton().select('10');
         Global.elements.goToCheckoutButton().click();
+        Global.elements.animateSpin();
+
     });
         // Log out with a products added in a cart 
     it('logs out with a products in the cart', () => {
@@ -139,21 +139,66 @@ describe('Checkout functionality', () => {
         Checkout.fillProvince(Cypress.env('province'));
         Checkout.elements.countrySelectButton().select('Canada');
         Checkout.elements.continueToDeliveryButton().click();
-
         cy.getByTestId('edit-address-button').should('be.visible');
-        cy.wait(3000);
-        // check that click was successful
-    });
-
-    it('chose a delivery option and finish the order', () => {
-        Global.navigateSideBar.openPage('Cart');
-        Cart.elements.goToCheckoutButton().click();
+        Checkout.elements.deliveryOptionSelectButton().should('be.visible');
         Checkout.elements.deliveryOptionSelectButton().click();
         Checkout.elements.continueToPaymentButton().click();
         Checkout.elements.continueToReviewButton().click();
         Checkout.elements.placeOrderButton().click();
-        // check that order is successful
+        // check that order is successful with some element visible
     });
 });
+describe('Dashboard functionality', () => {
 
-    
+    const USERNAME = Cypress.env('username');
+    const PASSWORD = Cypress.env('password');
+
+    beforeEach(() => {
+        // Visit the store page before each test 
+        cy.login(USERNAME, PASSWORD);
+        cy.visit('/');
+    });
+
+    it('profile information change', () => {
+        Global.elements.sideBarBurger().click();
+        Home.elements.accountLink().click();
+        Dashboard.elements.profileLink().click();
+        Dashboard.elements.nameEditButton().click();
+        Dashboard.fillFirstName1(Cypress.env('firstName1'));
+        Dashboard.fillLastName1(Cypress.env('lastName1'));
+        Dashboard.elements.saveButton().click();
+        // check element that proves save worked
+    });
+
+    it('profile information change', () => {
+        Global.elements.sideBarBurger().click();
+        Home.elements.accountLink().click();
+        Dashboard.elements.addressLink().click();
+        Dashboard.elements.addAddressButton().click();
+        Dashboard.fillFirstName2(Cypress.env('firstName2'));
+        Dashboard.fillLastName2(Cypress.env('lastName2'));
+        Dashboard.fillAddress2(Cypress.env('address2'));
+        Dashboard.fillPostalCode2(Cypress.env('postalCode2'));
+        Dashboard.fillCityInput(Cypress.env('city'));
+        Dashboard.elements.saveButton().click();
+        // check element that proves save worked
+    });
+
+});
+describe('Log out  functionality', () => {
+
+    const USERNAME = Cypress.env('username');
+    const PASSWORD = Cypress.env('password');
+
+    beforeEach(() => {
+        // Visit the store page before each test 
+        cy.login(USERNAME, PASSWORD);
+        cy.visit('/');
+    });
+
+    it('logs out successfully',() => {
+        Global.elements.sideBarBurger().click();
+        Global.elements.logOutButton().click();
+        // check that user is logged out
+    });
+});

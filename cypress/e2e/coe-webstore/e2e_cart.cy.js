@@ -23,6 +23,7 @@ describe('Cart functionality', () => {
     it('removes a product from the cart', () => {
         Global.navigateSideBar.openPage('Cart');
         Cart.elements.productDeleteButton().click();
+        Cart.elements.emptyCartMessage();
     });
         // Products into the card can be managed
     it('already added product quantity increasion', () => {
@@ -31,6 +32,7 @@ describe('Cart functionality', () => {
         Global.navigateSideBar.openPage('Cart');
         Cart.elements.productSelectButton().select('10');
         Global.elements.goToCheckoutButton().click();
+        Global.elements.animateSpin();
     });
         // Log out with a products added in a cart 
     it('logs out with a products in the cart', () => {
