@@ -36,6 +36,8 @@ describe('Dashboard functionality', () => {
         Dashboard.fillLastName2(Cypress.env('lastName2'));
         Dashboard.fillAddress2(Cypress.env('address2'));
         Dashboard.fillPostalCode2(Cypress.env('postalCode2'));
+        Dashboard.fillCityInput(Cypress.env('city'));
+        Dashboard.elements.saveButton().click();
     });
 
 });

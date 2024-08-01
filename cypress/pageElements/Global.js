@@ -7,6 +7,7 @@ class Global {
         goToCheckoutButton: () => cy.getByTestId('checkout-button'),
         logOutButton: () => cy.getByTestId('logout-button'),
         cartCounterTag: () => cy.get('.bg-ui-tag-blue-bg'),
+        animateSpin: () => cy.get('.animate-spin').should('not.exist'),
         
     
     }; 

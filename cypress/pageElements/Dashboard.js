@@ -10,7 +10,8 @@ class Dashboard {
         saveButton: () => cy.getByTestId('save-button').filter(':visible'),
         addAddressButton: () => cy.getByTestId('add-address-button').filter(':visible'),
         addressInput: () => cy.getByTestId('address-1-input'),
-        postalCodeInput: () => cy.getByTestId('postal-code-input').filter(':visible'),
+        postalCodeInput: () => cy.getByTestId('postal-code-input'),
+        cityInput: () => cy.getByTestId('city-input'),
     
     };
 
@@ -30,7 +31,10 @@ class Dashboard {
         this.elements.addressInput().clear().type(address);
     }
     fillPostalCode2(postalCode){
-        this.elements.postalCodeInput().clear().type(postalCode);
+        this.elements.postalCodeInput().type(postalCode, { force: true});
+    }
+    fillCityInput(city){
+        this.elements.cityInput().clear().type(city);
     }
 
   

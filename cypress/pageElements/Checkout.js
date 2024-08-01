@@ -14,6 +14,7 @@ class Checkout {
         continueToPaymentButton: () => cy.getByTestId('submit-delivery-option-button'),
         continueToReviewButton: () => cy.getByTestId('submit-payment-button'),
         placeOrderButton: () => cy.getByTestId('submit-order-button'),
+        
     }
 
     fillFirstName(firstName){
